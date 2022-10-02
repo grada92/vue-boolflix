@@ -1,7 +1,7 @@
 <template>
     <main>
       <h2 v-if="movies.length > 0">MOVIES</h2>
-       <div class="card-container">
+       <div class="card-container">  <!--Add Movie-->
           <div v-for="movie in movies" :key="movie.id" class="card">
            <img :src="`http://image.tmdb.org/t/p/w342/${movie.poster_path}`" alt="movie" class="poster-img">
            <div class="text-information">
@@ -17,7 +17,7 @@
            </div>
           </div>
        </div>
-  
+          <!---Add SERIES-->
        <h2 v-if="serieTv.length > 0">SERIES TV</h2>
         <div class="card-container">
           <div v-for="serie in serieTv" :key="serie.id" class="card">
@@ -27,8 +27,8 @@
             <h5>ORIGINAL TITLE: {{serie.original_name}}</h5>
             <p class="flag-img">LANGUAGE:
               <img :src="viewFlag(serie.original_language)" alt="">
-            </p>
-            <div>VOTE: <i v-for="star in 5" :key="star" class="fa-star"
+            </p>    <!---Add ranking stars-->
+            <div>VOTE: <i v-for="star in 5" :key="star" class="fa-star" 
                 :class="changeVote(serie.vote_average) >= star? 'fa-solid':'fa-regular'">
               </i>
             </div>
@@ -50,7 +50,7 @@
     serieTv : Array,
   },
   methods : {
-    viewFlag(flag){
+    viewFlag(flag){   // Change flag view
       if(flag === 'en' || flag ==='uk'){
         flag = 'gb'
       }else if(flag === 'ja'){
@@ -59,7 +59,7 @@
       return `https://flagicons.lipis.dev/flags/4x3/${flag}.svg`
       
     },
-    changeVote(vote){
+    changeVote(vote){  // Create a rating from 1 to 5 stars
       let result = Math.floor(vote / 2)
       return result
     }
