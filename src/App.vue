@@ -24,6 +24,20 @@ data(){
   }
 },
   created(){
+    axios                                                                                                       // Add Homepage Movies
+        .get(`https://api.themoviedb.org/3/search/movie?api_key=8021e5aaeaa4edba33db1363acb13761&language=it-IT&query=${'marvel'}&page=1&include_adult=false`)
+        .then((response) => {
+          console.log('movie' , response)
+          console.log('movie',response.data.results)
+          this.ArrayMovies = response.data.results
+        })
+
+        axios                                                                                                   // Add Homepage Series
+          .get(`https://api.themoviedb.org/3/search/tv?api_key=8021e5aaeaa4edba33db1363acb13761&language=it-IT&query=${'marvel'}&include_adult=false`)
+          .then ((response) =>{
+            console.log('serie tv',response.data.results)
+            this.ArraySerieTv = response.data.results
+          })
    
   },
   methods : {
